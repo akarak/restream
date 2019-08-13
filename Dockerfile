@@ -51,6 +51,10 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
 
 # Set up config file
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +X /entrypoint.sh
 
 EXPOSE 1935
+ENTRYPOINT [ "/entrypoint.sh" ]
 CMD ["nginx", "-g", "daemon off;"]
